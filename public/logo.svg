@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 56" fill="none" role="img" aria-label="Faaperfumes">
+  <rect x="0" y="4" width="48" height="48" rx="11" fill="#1C2B28"/>
+  <path
+    d="M24 12c-3.6 4.5-5.8 8.1-5.8 12a5.8 5.8 0 1 0 11.6 0c0-3.9-2.2-7.5-5.8-12Z"
+    fill="#C9B08A"
+  />
+  <circle cx="24" cy="24.1" r="1.9" fill="#1C2B28"/>
+  <text
+    x="62"
+    y="36"
+    fill="#1C2B28"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="26"
+    font-weight="500"
+    letter-spacing="3.2"
+  >FAAPERFUMES</text>
+</svg>
