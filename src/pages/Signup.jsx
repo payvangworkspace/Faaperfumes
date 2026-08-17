@@ -1,19 +1,27 @@
 import { useState } from 'react'
-import { Link, Navigate, useNavigate } from 'react-router-dom'
-import { useAuth } from '../context/AuthContext'
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom'
+import { ROLES, profilePathFor, useAuth } from '../context/AuthContext'
 import { useCart } from '../context/CartContext'
 import { usePromo } from '../context/PromoContext'
 
 export default function Signup() {
-  const { signup, isAuthenticated } = useAuth()
+  const { signup, isAuthenticated, user } = useAuth()
   const { showToast } = useCart()
   const { applyPromo } = usePromo()
   const navigate = useNavigate()
-  const [form, setForm] = useState({ name: '', email: '', password: '' })
+  const location = useLocation()
+  const redirectTo = location.state?.from || null
+  const fromCheckout = redirectTo === '/checkout'
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    password: '',
+    role: ROLES.CUSTOMER,
+  })
   const [error, setError] = useState('')
 
   if (isAuthenticated) {
-    return <Navigate to="/wishlist" replace />
+    return <Navigate to={redirectTo || profilePathFor(user)} replace />
   }
 
   function handleSubmit(e) {
@@ -23,9 +31,17 @@ export default function Signup() {
       setError(result.error)
       return
     }
-    applyPromo('WELCOME15')
-    showToast(`Welcome, ${result.user.name} — WELCOME15 applied`)
-    navigate('/wishlist')
+    if (result.user.role === ROLES.CUSTOMER) {
+      applyPromo('WELCOME15')
+      showToast(
+        fromCheckout
+          ? `Welcome, ${result.user.name} — WELCOME15 applied. Continue to checkout`
+          : `Welcome, ${result.user.name} — WELCOME15 applied`,
+      )
+    } else {
+      showToast(`Welcome, ${result.user.name}`)
+    }
+    navigate(redirectTo || profilePathFor(result.user))
   }
 
   return (
@@ -34,7 +50,9 @@ export default function Signup() {
         <p className="eyebrow">Account</p>
         <h1>Sign up</h1>
         <p className="auth__lead">
-          Create an account to save your wishlist. New members get code WELCOME15.
+          {fromCheckout
+            ? 'Create an account to checkout. Your cart will stay saved.'
+            : 'Create a customer account to shop, or an admin account for store management.'}
         </p>
 
         <form className="auth__form" onSubmit={handleSubmit}>
@@ -74,13 +92,27 @@ export default function Signup() {
             />
           </label>
 
+          <label>
+            Account type
+            <select
+              value={form.role}
+              onChange={(e) => setForm((f) => ({ ...f, role: e.target.value }))}
+            >
+              <option value={ROLES.CUSTOMER}>Customer — shop perfumes</option>
+              <option value={ROLES.ADMIN}>Admin — manage store</option>
+            </select>
+          </label>
+
           <button type="submit" className="btn btn--primary">
-            Create account
+            {fromCheckout ? 'Create account & checkout' : 'Create account'}
           </button>
         </form>
 
         <p className="auth__switch">
-          Already registered? <Link to="/login">Log in</Link>
+          Already registered?{' '}
+          <Link to="/login" state={redirectTo ? { from: redirectTo } : undefined}>
+            Log in
+          </Link>
         </p>
       </div>
     </section>

@@ -17,10 +17,6 @@ export default function Cart() {
     0,
   )
 
-  function handleCheckout() {
-    showToast('Checkout is a demo — your bag is ready to review')
-  }
-
   return (
     <>
       <section className="page-hero page-hero--compact">
@@ -47,11 +43,14 @@ export default function Cart() {
           {!isAuthenticated ? (
             <div className="wishlist-banner">
               <p>
-                <Link to="/login" state={{ from: '/cart' }}>
+                <Link to="/login" state={{ from: '/checkout' }}>
                   Log in
                 </Link>{' '}
                 or{' '}
-                <Link to="/signup">sign up</Link> to keep your cart across devices.
+                <Link to="/signup" state={{ from: '/checkout' }}>
+                  sign up
+                </Link>{' '}
+                to checkout — your cart will stay saved.
               </p>
             </div>
           ) : null}
@@ -129,15 +128,19 @@ export default function Cart() {
                 </div>
                 <div className="cart-summary__row">
                   <span>Shipping</span>
-                  <span>Calculated at checkout</span>
+                  <span>Complimentary</span>
                 </div>
                 <div className="cart-summary__total">
                   <span>Total</span>
                   <strong>{format(subtotalAed)}</strong>
                 </div>
-                <button type="button" className="btn btn--primary" onClick={handleCheckout}>
-                  Checkout
-                </button>
+                <Link
+                  className="btn btn--primary"
+                  to={isAuthenticated ? '/checkout' : '/login'}
+                  state={isAuthenticated ? undefined : { from: '/checkout' }}
+                >
+                  {isAuthenticated ? 'Checkout' : 'Sign in to checkout'}
+                </Link>
                 <button
                   type="button"
                   className="btn btn--line"

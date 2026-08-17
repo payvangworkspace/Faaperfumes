@@ -1,19 +1,20 @@
 import { useState } from 'react'
 import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom'
-import { useAuth } from '../context/AuthContext'
+import { profilePathFor, useAuth } from '../context/AuthContext'
 import { useCart } from '../context/CartContext'
 
 export default function Login() {
-  const { login, isAuthenticated } = useAuth()
+  const { login, isAuthenticated, user } = useAuth()
   const { showToast } = useCart()
   const navigate = useNavigate()
   const location = useLocation()
-  const redirectTo = location.state?.from || '/wishlist'
+  const redirectTo = location.state?.from || null
+  const fromCheckout = redirectTo === '/checkout'
   const [form, setForm] = useState({ email: '', password: '' })
   const [error, setError] = useState('')
 
   if (isAuthenticated) {
-    return <Navigate to={redirectTo} replace />
+    return <Navigate to={redirectTo || profilePathFor(user)} replace />
   }
 
   function handleSubmit(e) {
@@ -23,8 +24,12 @@ export default function Login() {
       setError(result.error)
       return
     }
-    showToast(`Welcome back, ${result.user.name}`)
-    navigate(redirectTo)
+    showToast(
+      fromCheckout
+        ? `Welcome back, ${result.user.name} — continue to checkout`
+        : `Welcome back, ${result.user.name}`,
+    )
+    navigate(redirectTo || profilePathFor(result.user))
   }
 
   return (
@@ -32,7 +37,11 @@ export default function Login() {
       <div className="container auth__card">
         <p className="eyebrow">Account</p>
         <h1>Log in</h1>
-        <p className="auth__lead">Access your wishlist and saved preferences.</p>
+        <p className="auth__lead">
+          {fromCheckout
+            ? 'Sign in to complete your order. Your cart items will still be waiting.'
+            : 'Sign in as a customer to shop, or as admin to open the admin profile.'}
+        </p>
 
         <form className="auth__form" onSubmit={handleSubmit}>
           {error ? <p className="auth__error">{error}</p> : null}
@@ -60,12 +69,21 @@ export default function Login() {
           </label>
 
           <button type="submit" className="btn btn--primary">
-            Log in
+            {fromCheckout ? 'Log in & checkout' : 'Log in'}
           </button>
         </form>
 
+        <p className="auth__hint">
+          Demo customer: <code>customer@faaperfumes.com</code> / <code>Customer@123</code>
+          <br />
+          Demo admin: <code>admin@faaperfumes.com</code> / <code>Admin@123</code>
+        </p>
+
         <p className="auth__switch">
-          New here? <Link to="/signup">Create an account</Link>
+          New here?{' '}
+          <Link to="/signup" state={redirectTo ? { from: redirectTo } : undefined}>
+            Create a customer account
+          </Link>
         </p>
       </div>
     </section>

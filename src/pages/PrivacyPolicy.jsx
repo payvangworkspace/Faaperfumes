@@ -52,7 +52,7 @@ const sections = [
   {
     heading: 'Your rights',
     paragraphs: [
-      'You may request access to, correction of, or deletion of personal data we hold about you, subject to legal retention needs. To exercise these rights, or ask a privacy question, contact sales@faaperfumes.com or call +971 4 000 0000.',
+      'You may request access to, correction of, or deletion of personal data we hold about you, subject to legal retention needs. To exercise these rights, or ask a privacy question, contact faaperfumess@gmail.com or call 055 238 3144. Our office is at THE BINARY BY OMNIYAT, Office 1912-191, Business Bay, Dubai, United Arab Emirates.',
     ],
   },
   {

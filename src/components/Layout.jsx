@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
-import { useAuth } from '../context/AuthContext'
+import { useAuth, ROLES } from '../context/AuthContext'
 import { useCart } from '../context/CartContext'
 import { useCurrency } from '../context/CurrencyContext'
 import { useWishlist } from '../context/WishlistContext'
@@ -86,9 +86,17 @@ function Header({ menuOpen, onToggleMenu, onCloseMenu }) {
                 Cart ({cartCount})
               </NavLink>
               {isAuthenticated ? (
-                <button type="button" className="nav__button" onClick={handleLogout}>
-                  Sign out ({user.name})
-                </button>
+                <>
+                  <NavLink
+                    to={user.role === ROLES.ADMIN ? '/admin' : '/profile'}
+                    onClick={onCloseMenu}
+                  >
+                    {user.role === ROLES.ADMIN ? 'Admin dashboard' : 'Customer profile'}
+                  </NavLink>
+                  <button type="button" className="nav__button" onClick={handleLogout}>
+                    Sign out
+                  </button>
+                </>
               ) : (
                 <>
                   <NavLink to="/login" onClick={onCloseMenu}>
@@ -107,9 +115,13 @@ function Header({ menuOpen, onToggleMenu, onCloseMenu }) {
 
         <div className="header__actions">
           {isAuthenticated ? (
-            <button type="button" className="header__link header__button" onClick={handleLogout}>
-              {user.name.split(' ')[0]}
-            </button>
+            <Link
+              to={user.role === ROLES.ADMIN ? '/admin' : '/profile'}
+              className="header__link"
+              onClick={onCloseMenu}
+            >
+              {user.role === ROLES.ADMIN ? 'Admin dashboard' : 'Customer profile'}
+            </Link>
           ) : (
             <Link to="/login" className="header__link" onClick={onCloseMenu}>
               Log in
@@ -138,9 +150,9 @@ function Footer() {
             delivery to every Emirate.
           </p>
           <p className="footer__contact">
-            sales@faaperfumes.com
+            <a href="mailto:faaperfumess@gmail.com">faaperfumess@gmail.com</a>
             <br />
-            +971 4 000 0000
+            <a href="tel:+971552383144">055 238 3144</a>
           </p>
         </div>
 
@@ -192,8 +204,9 @@ function Footer() {
         <div>
           <h3>Visit</h3>
           <ul>
-            <li>Dubai · Sharjah</li>
-            <li>Abu Dhabi · Ajman</li>
+            <li>THE BINARY BY OMNIYAT</li>
+            <li>Office 1912-191, Business Bay</li>
+            <li>Dubai, United Arab Emirates</li>
             <li>Currencies: AED · USD · EUR</li>
           </ul>
         </div>

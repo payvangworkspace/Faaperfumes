@@ -16,8 +16,12 @@ import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Wishlist from './pages/Wishlist'
 import Cart from './pages/Cart'
+import Checkout from './pages/Checkout'
+import CheckoutSuccess from './pages/CheckoutSuccess'
 import Combos from './pages/Combos'
 import ProductDetail from './pages/ProductDetail'
+import CustomerProfile from './pages/CustomerProfile'
+import AdminProfile from './pages/AdminProfile'
 import './App.css'
 
 function ProductDetailWrapper() {
@@ -46,8 +50,12 @@ export default function App() {
                     <Route path="refund-policy" element={<RefundPolicy />} />
                     <Route path="login" element={<Login />} />
                     <Route path="signup" element={<Signup />} />
+                    <Route path="profile" element={<CustomerProfile />} />
+                    <Route path="admin" element={<AdminProfile />} />
                     <Route path="wishlist" element={<Wishlist />} />
                     <Route path="cart" element={<Cart />} />
+                    <Route path="checkout" element={<Checkout />} />
+                    <Route path="checkout/success" element={<CheckoutSuccess />} />
                     <Route path="*" element={<Navigate to="/" replace />} />
                   </Route>
                 </Routes>

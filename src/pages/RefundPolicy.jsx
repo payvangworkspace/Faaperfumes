@@ -39,7 +39,7 @@ const sections = [
   {
     heading: 'How to start a return',
     paragraphs: [
-      'Email sales@faaperfumes.com or call +971 4 000 0000 with your order number and reason for return. Once approved, we will share return instructions for courier drop-off or store hand-back (click & collect).',
+      'Email faaperfumess@gmail.com or call 055 238 3144 with your order number and reason for return. Once approved, we will share return instructions for courier drop-off or store hand-back (click & collect).',
     ],
   },
   {
@@ -57,7 +57,7 @@ const sections = [
   {
     heading: 'Questions',
     paragraphs: [
-      'For help with returns or refunds, reach our support team any day at sales@faaperfumes.com or +971 4 000 0000. We aim to respond within one business day.',
+      'For help with returns or refunds, reach our support team any day at faaperfumess@gmail.com or 055 238 3144. We aim to respond within one business day.',
     ],
   },
 ]
