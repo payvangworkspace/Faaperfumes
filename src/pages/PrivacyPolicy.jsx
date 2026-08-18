@@ -4,7 +4,7 @@ const sections = [
   {
     heading: 'Who we are',
     paragraphs: [
-      'Faaperfumes (“we”, “us”, “our”) operates this online fragrance boutique and related store services across the UAE. This Privacy Policy explains what information we collect, how we use it, and the choices you have.',
+      'Faaperfume (“we”, “us”, “our”) operates this online fragrance boutique and related store services across the UAE. This Privacy Policy explains what information we collect, how we use it, and the choices you have.',
     ],
   },
   {
@@ -68,7 +68,7 @@ export default function PrivacyPolicy() {
     <PolicyPage
       eyebrow="Legal"
       title="Privacy Policy"
-      summary="How Faaperfumes collects, uses, and protects your information when you shop with us."
+      summary="How Faaperfume collects, uses, and protects your information when you shop with us."
       updated="13 August 2026"
       sections={sections}
     />

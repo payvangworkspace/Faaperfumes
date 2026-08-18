@@ -212,7 +212,7 @@ function Footer() {
         </div>
       </div>
       <div className="container footer__base">
-        <p>© {new Date().getFullYear()} Faaperfumes. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} Faaperfume. All rights reserved.</p>
         <div className="footer__legal">
           <Link to="/privacy-policy">Privacy Policy</Link>
           <Link to="/refund-policy">Refund Policy</Link>

@@ -4,10 +4,10 @@ import { readJson, writeJson } from '../lib/storage'
 import { products } from '../data'
 
 const WishlistContext = createContext(null)
-const GUEST_KEY = 'faaperfumes_wishlist_guest'
+const GUEST_KEY = 'faaperfume_wishlist_guest'
 
 function userKey(email) {
-  return `faaperfumes_wishlist_${email}`
+  return `faaperfume_wishlist_${email}`
 }
 
 export function WishlistProvider({ children }) {

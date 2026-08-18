@@ -18,7 +18,7 @@ function Hero() {
       </div>
       <div className="hero__veil" aria-hidden="true" />
       <div className="container hero__content">
-        <p className="hero__brand">Faaperfumes</p>
+        <p className="hero__brand">Faaperfume</p>
         <h1>Fragrance with quiet confidence.</h1>
         <p className="hero__lead">
           Designer, niche, and Arabian scents — authentic bottles, curated for
@@ -120,7 +120,7 @@ function Story() {
         <img src={heroImages.story} alt="" />
       </div>
       <div className="story__copy">
-        <p className="eyebrow">About Faaperfumes</p>
+        <p className="eyebrow">About Faaperfume</p>
         <h2>A fragrance destination built on authenticity.</h2>
         <p>
           From designer classics to rare niche finds and traditional oud, every

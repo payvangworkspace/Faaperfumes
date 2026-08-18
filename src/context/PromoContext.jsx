@@ -2,7 +2,7 @@ import { createContext, useContext, useMemo, useState } from 'react'
 import { readJson, writeJson } from '../lib/storage'
 
 const PromoContext = createContext(null)
-const KEY = 'faaperfumes_promo'
+const KEY = 'faaperfume_promo'
 
 export const PROMO_CODES = {
   FAA10: {

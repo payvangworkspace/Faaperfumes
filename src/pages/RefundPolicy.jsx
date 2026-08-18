@@ -4,13 +4,13 @@ const sections = [
   {
     heading: 'Our promise',
     paragraphs: [
-      'Every Faaperfumes bottle is sourced as authentic. If something is not right with your order, we will make it right under the terms below.',
+      'Every Faaperfume bottle is sourced as authentic. If something is not right with your order, we will make it right under the terms below.',
     ],
   },
   {
     heading: 'Return window',
     paragraphs: [
-      'You may request a return or refund within 7 days of delivery for eligible items purchased on faaperfumes.com or collected from a participating store.',
+      'You may request a return or refund within 7 days of delivery for eligible items purchased on faaperfume.com or collected from a participating store.',
     ],
     list: [
       'Item must be unused, unopened, and in original sealed packaging',
@@ -67,7 +67,7 @@ export default function RefundPolicy() {
     <PolicyPage
       eyebrow="Legal"
       title="Refund Policy"
-      summary="Returns, exchanges, and refunds for Faaperfumes orders across the UAE."
+      summary="Returns, exchanges, and refunds for Faaperfume orders across the UAE."
       updated="13 August 2026"
       sections={sections}
     />

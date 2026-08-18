@@ -27,7 +27,7 @@ export default function CustomerProfile() {
         <div className="container page-hero__content page-hero__content--plain">
           <p className="eyebrow">Customer</p>
           <h1>Customer profile</h1>
-          <p>Manage your Faaperfumes shopping account.</p>
+          <p>Manage your Faaperfume shopping account.</p>
           <nav className="breadcrumbs" aria-label="Breadcrumb">
             <Link to="/">Home</Link>
             <span>/</span>

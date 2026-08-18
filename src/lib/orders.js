@@ -1,7 +1,7 @@
 import { readJson, writeJson } from './storage'
 
-export const ORDERS_KEY = 'faaperfumes_orders'
-export const LAST_ORDER_KEY = 'faaperfumes_last_order'
+export const ORDERS_KEY = 'faaperfume_orders'
+export const LAST_ORDER_KEY = 'faaperfume_last_order'
 
 export const ORDER_STATUSES = [
   { id: 'pending', label: 'Pending' },

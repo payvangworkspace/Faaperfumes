@@ -3,7 +3,7 @@ import { findCatalogItem } from '../data'
 import { readJson, writeJson } from '../lib/storage'
 
 const CartContext = createContext(null)
-const CART_KEY = 'faaperfumes_cart'
+const CART_KEY = 'faaperfume_cart'
 
 export function CartProvider({ children }) {
   const [lines, setLines] = useState(() => readJson(CART_KEY, []))

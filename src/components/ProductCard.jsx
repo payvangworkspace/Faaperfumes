@@ -7,7 +7,7 @@ import { useCurrency } from '../context/CurrencyContext'
 import { usePromo } from '../context/PromoContext'
 import { useWishlist } from '../context/WishlistContext'
 
-const FALLBACK = '/perfumes/p07.jpg'
+const FALLBACK = '/perfumes/bottles/lattafa-khamrah.jpg'
 
 export default function ProductCard({ product }) {
   const { addToCart, showToast } = useCart()

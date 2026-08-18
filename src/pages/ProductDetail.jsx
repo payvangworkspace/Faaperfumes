@@ -13,7 +13,7 @@ import { usePromo } from '../context/PromoContext'
 import { useWishlist } from '../context/WishlistContext'
 import ProductCard from '../components/ProductCard'
 
-const FALLBACK = '/perfumes/p07.jpg'
+const FALLBACK = '/perfumes/bottles/lattafa-khamrah.jpg'
 
 function categoryPath(category) {
   if (category === 'men') return '/men-perfumes'
@@ -127,13 +127,13 @@ export default function ProductDetail() {
 
             <div className="product-detail__info">
               <p className="eyebrow">
-                {isCombo ? 'Special combo' : product.brand || 'Faaperfumes'}
+                {isCombo ? 'Special combo' : product.brand || 'Faaperfume'}
               </p>
               <h1>{product.name}</h1>
               <p className="product-detail__meta">{formatProductNote(product)}</p>
               <p className="product-detail__desc">
                 {product.description ||
-                  `${product.name} — authentic fragrance from Faaperfumes.`}
+                  `${product.name} — authentic fragrance from Faaperfume.`}
               </p>
 
               <div className="product__price product-detail__price">
@@ -248,7 +248,7 @@ export default function ProductDetail() {
             <div className="section__head section__head--row">
               <div>
                 <h2>{isCombo ? 'You may also like' : 'More from this edit'}</h2>
-                <p>Continue exploring Faaperfumes.</p>
+                <p>Continue exploring Faaperfume.</p>
               </div>
               <Link className="text-link" to={categoryPath(product.category)}>
                 View all

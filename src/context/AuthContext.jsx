@@ -2,8 +2,8 @@ import { createContext, useContext, useMemo, useState } from 'react'
 import { readJson, writeJson } from '../lib/storage'
 
 const AuthContext = createContext(null)
-const USERS_KEY = 'faaperfumes_users'
-const SESSION_KEY = 'faaperfumes_session'
+const USERS_KEY = 'faaperfume_users'
+const SESSION_KEY = 'faaperfume_session'
 
 export const ROLES = {
   ADMIN: 'admin',
@@ -11,13 +11,13 @@ export const ROLES = {
 }
 
 function encodePassword(password) {
-  return btoa(`faaperfumes:${password}`)
+  return btoa(`faaperfume:${password}`)
 }
 
 const SEED_ADMIN = {
   id: 'seed-admin',
   name: 'Store Admin',
-  email: 'admin@faaperfumes.com',
+  email: 'admin@faaperfume.com',
   password: encodePassword('Admin@123'),
   role: ROLES.ADMIN,
   createdAt: 0,
@@ -26,7 +26,7 @@ const SEED_ADMIN = {
 const SEED_CUSTOMER = {
   id: 'seed-customer',
   name: 'Demo Customer',
-  email: 'customer@faaperfumes.com',
+  email: 'customer@faaperfume.com',
   password: encodePassword('Customer@123'),
   role: ROLES.CUSTOMER,
   createdAt: 0,

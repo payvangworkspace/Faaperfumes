@@ -74,9 +74,9 @@ export default function Login() {
         </form>
 
         <p className="auth__hint">
-          Demo customer: <code>customer@faaperfumes.com</code> / <code>Customer@123</code>
+          Demo customer: <code>customer@faaperfume.com</code> / <code>Customer@123</code>
           <br />
-          Demo admin: <code>admin@faaperfumes.com</code> / <code>Admin@123</code>
+          Demo admin: <code>admin@faaperfume.com</code> / <code>Admin@123</code>
         </p>
 
         <p className="auth__switch">

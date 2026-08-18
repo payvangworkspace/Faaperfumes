@@ -3,7 +3,7 @@ import { CURRENCIES, formatMoney } from '../lib/currency'
 import { readJson, writeJson } from '../lib/storage'
 
 const CurrencyContext = createContext(null)
-const KEY = 'faaperfumes_currency'
+const KEY = 'faaperfume_currency'
 const ALLOWED = new Set(['AED', 'USD', 'EUR'])
 
 export function CurrencyProvider({ children }) {

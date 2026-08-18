@@ -5,7 +5,7 @@ export default function Logo({ to = '/', onClick, className = '', compact = fals
     <Link
       to={to}
       className={`brand-logo ${compact ? 'brand-logo--compact' : ''} ${className}`.trim()}
-      aria-label="Faaperfumes home"
+      aria-label="Faaperfume home"
       onClick={onClick}
     >
       <span className="brand-logo__mark" aria-hidden="true">
@@ -18,7 +18,7 @@ export default function Logo({ to = '/', onClick, className = '', compact = fals
           <circle cx="20" cy="17.8" r="1.7" fill="#1C2B28" />
         </svg>
       </span>
-      <span className="brand-logo__word">Faaperfumes</span>
+      <span className="brand-logo__word">Faaperfume</span>
     </Link>
   )
 }
