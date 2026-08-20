@@ -20,6 +20,9 @@ const SEED_ADMIN = {
   email: 'admin@faaperfume.com',
   password: encodePassword('Admin@123'),
   role: ROLES.ADMIN,
+  phone: '055 238 3144',
+  city: 'Dubai',
+  emirate: 'Dubai',
   createdAt: 0,
 }
 
@@ -29,6 +32,9 @@ const SEED_CUSTOMER = {
   email: 'customer@faaperfume.com',
   password: encodePassword('Customer@123'),
   role: ROLES.CUSTOMER,
+  phone: '050 000 0000',
+  city: 'Dubai',
+  emirate: 'Dubai',
   createdAt: 0,
 }
 
@@ -39,32 +45,41 @@ function withRole(user, role = ROLES.CUSTOMER) {
     name: user.name,
     email: user.email,
     role: user.role === ROLES.ADMIN ? ROLES.ADMIN : role,
+    phone: user.phone || '',
+    city: user.city || '',
+    emirate: user.emirate || '',
   }
 }
 
+function publicUser(user) {
+  if (!user) return null
+  const { password, ...rest } = user
+  return rest
+}
+
 function ensureSeedUsers(users) {
-  const normalised = users.map((u) => ({
-    ...u,
-    role: u.role === ROLES.ADMIN ? ROLES.ADMIN : ROLES.CUSTOMER,
+  const normalised = users.map((user) => ({
+    ...user,
+    role: user.role === ROLES.ADMIN ? ROLES.ADMIN : ROLES.CUSTOMER,
   }))
 
   const next = [...normalised]
-  if (!next.some((u) => u.email === SEED_ADMIN.email)) next.unshift(SEED_ADMIN)
-  if (!next.some((u) => u.email === SEED_CUSTOMER.email)) next.push(SEED_CUSTOMER)
+  if (!next.some((user) => user.email === SEED_ADMIN.email)) next.unshift(SEED_ADMIN)
+  if (!next.some((user) => user.email === SEED_CUSTOMER.email)) next.push(SEED_CUSTOMER)
   return next
 }
 
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState(() => {
-    const users = ensureSeedUsers(readJson(USERS_KEY, []))
-    writeJson(USERS_KEY, users)
-    return withRole(readJson(SESSION_KEY, null))
+  const [users, setUsers] = useState(() => {
+    const next = ensureSeedUsers(readJson(USERS_KEY, []))
+    writeJson(USERS_KEY, next)
+    return next
   })
+  const [user, setUser] = useState(() => withRole(readJson(SESSION_KEY, null)))
 
-  function getUsers() {
-    const users = ensureSeedUsers(readJson(USERS_KEY, []))
-    writeJson(USERS_KEY, users)
-    return users
+  function persistUsers(next) {
+    setUsers(next)
+    writeJson(USERS_KEY, next)
   }
 
   function persistSession(nextUser) {
@@ -74,16 +89,22 @@ export function AuthProvider({ children }) {
     else localStorage.removeItem(SESSION_KEY)
   }
 
-  function signup({ name, email, password, role = ROLES.CUSTOMER }) {
+  function getUsers() {
+    return users
+  }
+
+  function createAccount(
+    { name, email, password, role = ROLES.CUSTOMER, phone = '', city = '', emirate = '', notes = '' },
+    { signIn = true } = {},
+  ) {
     const normalised = email.trim().toLowerCase()
-    const users = getUsers()
     const nextRole = role === ROLES.ADMIN ? ROLES.ADMIN : ROLES.CUSTOMER
 
     if (!name.trim() || !normalised || password.length < 6) {
-      return { ok: false, error: 'Enter your name, email, and a password (6+ characters).' }
+      return { ok: false, error: 'Enter a name, email, and a password (6+ characters).' }
     }
 
-    if (users.some((u) => u.email === normalised)) {
+    if (users.some((item) => item.email === normalised)) {
       return { ok: false, error: 'An account with this email already exists.' }
     }
 
@@ -93,33 +114,55 @@ export function AuthProvider({ children }) {
       email: normalised,
       password: encodePassword(password),
       role: nextRole,
+      phone: phone.trim(),
+      city: city.trim(),
+      emirate: emirate.trim(),
+      notes: notes.trim(),
       createdAt: Date.now(),
     }
 
-    writeJson(USERS_KEY, [...users, nextUser])
+    persistUsers([...users, nextUser])
     const session = withRole(nextUser)
-    persistSession(session)
-    return { ok: true, user: session }
+    if (signIn) persistSession(session)
+    return { ok: true, user: publicUser(nextUser) }
+  }
+
+  function signup(payload) {
+    return createAccount(payload, { signIn: true })
   }
 
   function login({ email, password }) {
     const normalised = email.trim().toLowerCase()
-    const users = getUsers()
     const match = users.find(
-      (u) => u.email === normalised && u.password === encodePassword(password),
+      (item) => item.email === normalised && item.password === encodePassword(password),
     )
 
     if (!match) {
       return { ok: false, error: 'Incorrect email or password.' }
     }
 
-    const session = withRole(match)
-    persistSession(session)
-    return { ok: true, user: session }
+    persistSession(withRole(match))
+    return { ok: true, user: withRole(match) }
   }
 
   function logout() {
     persistSession(null)
+  }
+
+  function updateAccount(id, patch) {
+    const next = users.map((item) =>
+      item.id === id
+        ? {
+            ...item,
+            ...patch,
+            email: patch.email ? patch.email.trim().toLowerCase() : item.email,
+            password: patch.password ? encodePassword(patch.password) : item.password,
+          }
+        : item,
+    )
+    persistUsers(next)
+    if (user?.id === id) persistSession(next.find((item) => item.id === id))
+    return publicUser(next.find((item) => item.id === id))
   }
 
   const isAdmin = user?.role === ROLES.ADMIN
@@ -128,16 +171,19 @@ export function AuthProvider({ children }) {
   const value = useMemo(
     () => ({
       user,
+      users: users.map(publicUser),
       isAuthenticated: Boolean(user),
       isAdmin,
       isCustomer,
       role: user?.role ?? null,
       signup,
+      createAccount,
       login,
       logout,
       getUsers,
+      updateAccount,
     }),
-    [user, isAdmin, isCustomer],
+    [user, users, isAdmin, isCustomer],
   )
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>

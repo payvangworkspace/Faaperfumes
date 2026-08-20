@@ -2,7 +2,8 @@ import { createContext, useContext, useMemo, useState } from 'react'
 import { readJson, writeJson } from '../lib/storage'
 
 const PromoContext = createContext(null)
-const KEY = 'faaperfume_promo'
+const ACTIVE_KEY = 'faaperfume_promo'
+const CODES_KEY = 'faaperfume_promo_codes'
 
 export const PROMO_CODES = {
   FAA10: {
@@ -31,28 +32,67 @@ export const PROMO_CODES = {
   },
 }
 
+function loadCodes() {
+  const saved = readJson(CODES_KEY, null)
+  if (!saved || typeof saved !== 'object') return { ...PROMO_CODES }
+  return { ...PROMO_CODES, ...saved }
+}
+
 export function PromoProvider({ children }) {
+  const [codesMap, setCodesMap] = useState(loadCodes)
   const [promoCode, setPromoCode] = useState(() => {
-    const saved = readJson(KEY, null)
-    return saved && PROMO_CODES[saved] ? saved : null
+    const saved = readJson(ACTIVE_KEY, null)
+    const codes = loadCodes()
+    return saved && codes[saved] ? saved : null
   })
+
+  function persistCodes(next) {
+    setCodesMap(next)
+    writeJson(CODES_KEY, next)
+  }
 
   function applyPromo(rawCode) {
     const code = rawCode.trim().toUpperCase()
-    if (!PROMO_CODES[code]) {
-      return { ok: false, error: 'Invalid code. Try FAA10, WELCOME15, OUD20, or COMBO25.' }
+    if (!codesMap[code]) {
+      return { ok: false, error: 'Invalid promo code.' }
     }
     setPromoCode(code)
-    writeJson(KEY, code)
-    return { ok: true, promo: PROMO_CODES[code] }
+    writeJson(ACTIVE_KEY, code)
+    return { ok: true, promo: codesMap[code] }
   }
 
   function clearPromo() {
     setPromoCode(null)
-    localStorage.removeItem(KEY)
+    localStorage.removeItem(ACTIVE_KEY)
   }
 
-  const promo = promoCode ? PROMO_CODES[promoCode] : null
+  function addPromo({ code, label, percent, description }) {
+    const normalised = code.trim().toUpperCase()
+    if (!normalised || Number(percent) <= 0 || Number(percent) >= 90) {
+      return { ok: false, error: 'Enter a code and a discount between 1 and 89%.' }
+    }
+    const next = {
+      ...codesMap,
+      [normalised]: {
+        code: normalised,
+        label: label.trim() || `${percent}% off`,
+        percent: Number(percent),
+        description: description.trim() || `${percent}% off sitewide`,
+        custom: true,
+      },
+    }
+    persistCodes(next)
+    return { ok: true, promo: next[normalised] }
+  }
+
+  function removePromo(code) {
+    const next = { ...codesMap }
+    delete next[code]
+    persistCodes(next)
+    if (promoCode === code) clearPromo()
+  }
+
+  const promo = promoCode ? codesMap[promoCode] : null
 
   function getFinalPrice(priceAed) {
     if (!promo) return priceAed
@@ -65,10 +105,12 @@ export function PromoProvider({ children }) {
       promoCode,
       applyPromo,
       clearPromo,
+      addPromo,
+      removePromo,
       getFinalPrice,
-      codes: Object.values(PROMO_CODES),
+      codes: Object.values(codesMap),
     }),
-    [promo, promoCode],
+    [promo, promoCode, codesMap],
   )
 
   return <PromoContext.Provider value={value}>{children}</PromoContext.Provider>

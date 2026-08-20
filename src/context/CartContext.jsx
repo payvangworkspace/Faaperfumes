@@ -1,11 +1,12 @@
 import { createContext, useContext, useEffect, useMemo, useRef, useState } from 'react'
-import { findCatalogItem } from '../data'
+import { useCatalog } from './CatalogContext'
 import { readJson, writeJson } from '../lib/storage'
 
 const CartContext = createContext(null)
 const CART_KEY = 'faaperfume_cart'
 
 export function CartProvider({ children }) {
+  const { findLiveItem } = useCatalog()
   const [lines, setLines] = useState(() => readJson(CART_KEY, []))
   const [toast, setToast] = useState({ message: '', visible: false })
   const toastTimer = useRef(0)
@@ -63,12 +64,12 @@ export function CartProvider({ children }) {
     () =>
       lines
         .map((line) => {
-          const product = findCatalogItem(line.productId)
+          const product = findLiveItem(line.productId)
           if (!product) return null
           return { ...line, product }
         })
         .filter(Boolean),
-    [lines],
+    [lines, findLiveItem],
   )
 
   const cartCount = useMemo(

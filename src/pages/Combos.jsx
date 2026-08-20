@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom'
-import { combos, heroImages } from '../data'
+import { heroImages } from '../data'
+import { useCatalog } from '../context/CatalogContext'
 import ComboCard from '../components/ComboCard'
 
 export default function Combos() {
+  const { liveCombos: combos } = useCatalog()
   return (
     <>
       <section className="page-hero">

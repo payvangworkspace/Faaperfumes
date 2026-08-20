@@ -1,11 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
-import {
-  findCatalogItem,
-  formatProductNote,
-  getProductsByCategory,
-  products,
-} from '../data'
+import { formatProductNote } from '../data'
+import { useCatalog } from '../context/CatalogContext'
 import { getDiscountPercent } from '../lib/currency'
 import { useCart } from '../context/CartContext'
 import { useCurrency } from '../context/CurrencyContext'
@@ -31,7 +27,8 @@ function categoryLabel(category) {
 
 export default function ProductDetail() {
   const { id } = useParams()
-  const product = findCatalogItem(id)
+  const { findLiveItem, liveProducts, getByCategory } = useCatalog()
+  const product = findLiveItem(id)
   const { addToCart, showToast } = useCart()
   const { format } = useCurrency()
   const { getFinalPrice, promo } = usePromo()
@@ -64,8 +61,8 @@ export default function ProductDetail() {
 
   const related = (
     isCombo
-      ? products.filter((p) => p.featured).slice(0, 4)
-      : getProductsByCategory(product.category)
+      ? liveProducts.filter((p) => p.featured).slice(0, 4)
+      : getByCategory(product.category)
           .filter((p) => p.id !== product.id)
           .slice(0, 4)
   )

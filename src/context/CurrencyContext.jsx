@@ -1,16 +1,30 @@
-import { createContext, useContext, useMemo, useState } from 'react'
-import { CURRENCIES, formatMoney } from '../lib/currency'
+import { createContext, useContext, useEffect, useMemo, useState } from 'react'
+import { CURRENCIES, CURRENCY_CODES, formatMoney } from '../lib/currency'
 import { readJson, writeJson } from '../lib/storage'
 
 const CurrencyContext = createContext(null)
 const KEY = 'faaperfume_currency'
-const ALLOWED = new Set(['AED', 'USD', 'EUR'])
+const ALLOWED = new Set(CURRENCY_CODES)
 
 export function CurrencyProvider({ children }) {
   const [currency, setCurrencyState] = useState(() => {
     const saved = readJson(KEY, 'AED')
     return ALLOWED.has(saved) ? saved : 'AED'
   })
+
+  useEffect(() => {
+    function onStorage(event) {
+      if (event.key !== KEY || !event.newValue) return
+      try {
+        const next = JSON.parse(event.newValue)
+        if (ALLOWED.has(next)) setCurrencyState(next)
+      } catch {
+        /* ignore malformed storage */
+      }
+    }
+    window.addEventListener('storage', onStorage)
+    return () => window.removeEventListener('storage', onStorage)
+  }, [])
 
   function setCurrency(code) {
     if (!ALLOWED.has(code)) return

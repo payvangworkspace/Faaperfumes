@@ -1,12 +1,6 @@
 import { Link } from 'react-router-dom'
-import {
-  brandNames,
-  collections,
-  getFeaturedCombos,
-  getFeaturedProducts,
-  heroImages,
-  trusts,
-} from '../data'
+import { brandNames, collections, heroImages, trusts } from '../data'
+import { useCatalog } from '../context/CatalogContext'
 import ProductCard from '../components/ProductCard'
 import ComboCard from '../components/ComboCard'
 
@@ -64,6 +58,7 @@ function Collections() {
 }
 
 function Featured() {
+  const { getFeaturedProducts } = useCatalog()
   const featured = getFeaturedProducts().slice(0, 8)
 
   return (
@@ -89,6 +84,7 @@ function Featured() {
 }
 
 function CombosPreview() {
+  const { getFeaturedCombos } = useCatalog()
   const featured = getFeaturedCombos().slice(0, 3)
 
   return (

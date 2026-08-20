@@ -2,31 +2,18 @@ import { useEffect, useState } from 'react'
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
 import { useAuth, ROLES } from '../context/AuthContext'
 import { useCart } from '../context/CartContext'
-import { useCurrency } from '../context/CurrencyContext'
 import { useWishlist } from '../context/WishlistContext'
+import CurrencySwitch from './CurrencySwitch'
 import Logo from './Logo'
 import PromoBar from './PromoBar'
 
 function TopBar() {
-  const { currency, currencies, setCurrency } = useCurrency()
-
   return (
     <div className="topbar">
       <div className="container topbar__inner">
         <p>Complimentary express delivery across the UAE</p>
         <div className="topbar__links">
-          <div className="currency-switch" role="group" aria-label="Currency">
-            {currencies.map((item) => (
-              <button
-                key={item.code}
-                type="button"
-                className={currency === item.code ? 'is-active' : undefined}
-                onClick={() => setCurrency(item.code)}
-              >
-                {item.label}
-              </button>
-            ))}
-          </div>
+          <CurrencySwitch />
           <Link to="/#stores">Store locator</Link>
           <Link to="/#collections">Shop collections</Link>
         </div>
@@ -207,7 +194,7 @@ function Footer() {
             <li>THE BINARY BY OMNIYAT</li>
             <li>Office 1912-191, Business Bay</li>
             <li>Dubai, United Arab Emirates</li>
-            <li>Currencies: AED · USD · EUR</li>
+            <li>Currencies: AED · USD · EUR · INR · GBP</li>
           </ul>
         </div>
       </div>

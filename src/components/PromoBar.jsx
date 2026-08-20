@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { getFeaturedCombos } from '../data'
 import { useCart } from '../context/CartContext'
+import { useCatalog } from '../context/CatalogContext'
 import { usePromo } from '../context/PromoContext'
 
 export default function PromoBar() {
   const { promo, applyPromo, clearPromo, codes } = usePromo()
   const { showToast } = useCart()
+  const { getFeaturedCombos } = useCatalog()
   const [code, setCode] = useState('')
   const featuredCombos = getFeaturedCombos().slice(0, 3)
 

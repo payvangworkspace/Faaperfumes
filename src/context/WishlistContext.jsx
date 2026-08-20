@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react'
 import { useAuth } from './AuthContext'
+import { useCatalog } from './CatalogContext'
 import { readJson, writeJson } from '../lib/storage'
-import { products } from '../data'
 
 const WishlistContext = createContext(null)
 const GUEST_KEY = 'faaperfume_wishlist_guest'
@@ -12,6 +12,7 @@ function userKey(email) {
 
 export function WishlistProvider({ children }) {
   const { user } = useAuth()
+  const { findLiveItem } = useCatalog()
   const [ids, setIds] = useState(() => readJson(GUEST_KEY, []))
 
   useEffect(() => {
@@ -49,8 +50,8 @@ export function WishlistProvider({ children }) {
   }
 
   const items = useMemo(
-    () => ids.map((id) => products.find((p) => p.id === id)).filter(Boolean),
-    [ids],
+    () => ids.map((id) => findLiveItem(id)).filter(Boolean),
+    [ids, findLiveItem],
   )
 
   const value = useMemo(

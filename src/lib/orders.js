@@ -48,5 +48,49 @@ export function formatOrderDate(timestamp) {
 }
 
 export function paymentLabel(payment) {
-  return payment === 'cod' ? 'Cash on delivery' : 'Card on delivery'
+  if (payment === 'cod') return 'Cash on delivery'
+  if (payment === 'upi') return 'UPI'
+  if (payment === 'online') return 'Online checkout'
+  if (payment === 'wallet') return 'Wallet'
+  if (payment === 'netbanking') return 'Net banking'
+  if (payment === 'card') return 'Card'
+  return 'Card on delivery'
+}
+
+export function deleteOrder(orderId) {
+  const next = getOrders().filter((order) => order.id !== orderId)
+  writeJson(ORDERS_KEY, next)
+  return next
+}
+
+export function ordersToCsv(orders) {
+  const header = [
+    'Order ID',
+    'Created',
+    'Customer',
+    'Email',
+    'Phone',
+    'Status',
+    'Payment',
+    'Items',
+    'Total AED',
+  ]
+  const rows = orders.map((order) => [
+    order.id,
+    formatOrderDate(order.createdAt),
+    order.customer?.fullName || '',
+    order.customer?.email || '',
+    order.customer?.phone || '',
+    order.status,
+    paymentLabel(order.payment),
+    (order.items || []).map((item) => `${item.name} x${item.quantity}`).join('; '),
+    order.totalAed ?? 0,
+  ])
+  return [header, ...rows]
+    .map((row) =>
+      row
+        .map((cell) => `"${String(cell ?? '').replaceAll('"', '""')}"`)
+        .join(','),
+    )
+    .join('\n')
 }
