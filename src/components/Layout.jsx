@@ -194,7 +194,7 @@ function Footer() {
             <li>THE BINARY BY OMNIYAT</li>
             <li>Office 1912-191, Business Bay</li>
             <li>Dubai, United Arab Emirates</li>
-            <li>Currencies: AED · USD · EUR · INR · GBP</li>
+            <li>Currencies: AED · USD · EUR</li>
           </ul>
         </div>
       </div>

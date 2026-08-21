@@ -1,0 +1,305 @@
+[
+  {
+    "id": "c1",
+    "name": "His & Hers Duo",
+    "category": "combo",
+    "size": "2 bottles",
+    "includes": [
+      "Rasasi Hawas",
+      "Lattafa Eclaire"
+    ],
+    "price": 189,
+    "compareAt": 224,
+    "featured": true,
+    "badge": "Save 16%",
+    "image": "/perfumes/bottles/rasasi-hawas.jpg",
+    "gallery": [
+      "/perfumes/bottles/rasasi-hawas.jpg"
+    ],
+    "description": "Hawas for him and Eclaire for her — two full-size bestsellers in one gift-ready pair.",
+    "details": [
+      "Rasasi Hawas 100ml + Lattafa Eclaire 100ml",
+      "Better value than buying separately",
+      "Ideal anniversary or couple gift",
+      "Authentic Faaperfume sourcing"
+    ]
+  },
+  {
+    "id": "c2",
+    "name": "Oud Ritual Trio",
+    "category": "combo",
+    "size": "3 bottles",
+    "includes": [
+      "Oud Arabia Jannat E Zuhur",
+      "Oud Arabia Zainab",
+      "Arabiyat Al Noor"
+    ],
+    "price": 599,
+    "compareAt": 685,
+    "featured": true,
+    "badge": "Best value",
+    "image": "/perfumes/bottles/oud-arabia-jannat-e-zuhur.jpg",
+    "gallery": [
+      "/perfumes/bottles/oud-arabia-jannat-e-zuhur.jpg"
+    ],
+    "description": "Three oud-laced signatures for layering through the evening — florals, musk, and spice.",
+    "details": [
+      "Jannat E Zuhur + Zainab + Al Noor",
+      "Built for Gulf evenings",
+      "Layer together or wear alone",
+      "Priced below buying separately"
+    ]
+  },
+  {
+    "id": "c3",
+    "name": "Arabian Bestsellers",
+    "category": "combo",
+    "size": "3 × 100ml",
+    "includes": [
+      "Lattafa Khamrah",
+      "Afnan 9PM",
+      "Lattafa Asad"
+    ],
+    "price": 249,
+    "compareAt": 292,
+    "featured": true,
+    "badge": "New",
+    "image": "/perfumes/bottles/lattafa-khamrah.jpg",
+    "gallery": [
+      "/perfumes/bottles/lattafa-khamrah.jpg"
+    ],
+    "description": "Three Gulf crowd-pleasers — Khamrah, 9PM, and Asad — for discovering your next signature.",
+    "details": [
+      "Three sealed 100ml bottles",
+      "Sweet, spicy, and night-out profiles",
+      "Strong longevity in the heat",
+      "Authentic sealed stock"
+    ]
+  },
+  {
+    "id": "c4",
+    "name": "Evening Layering Pair",
+    "category": "combo",
+    "size": "2 × 100ml",
+    "includes": [
+      "French Avenue Liquid Brun",
+      "Lattafa Khamrah Qahwa"
+    ],
+    "price": 179,
+    "compareAt": 209,
+    "featured": true,
+    "badge": "Limited",
+    "image": "/perfumes/bottles/french-avenue-liquid-brun.jpg",
+    "gallery": [
+      "/perfumes/bottles/french-avenue-liquid-brun.jpg"
+    ],
+    "description": "Vanilla-praline Liquid Brun over coffee-spiced Qahwa — a night-out layering duo.",
+    "details": [
+      "Liquid Brun 100ml + Khamrah Qahwa 100ml",
+      "Designed to layer",
+      "Sweet gourmand pairing",
+      "Gift-ready"
+    ]
+  },
+  {
+    "id": "c5",
+    "name": "Fresh Day Combo",
+    "category": "combo",
+    "size": "2 bottles",
+    "includes": [
+      "Blue by Ahmed",
+      "Armaf Club de Nuit Intense Man"
+    ],
+    "price": 199,
+    "compareAt": 228,
+    "featured": false,
+    "badge": "Summer edit",
+    "image": "/perfumes/bottles/blue-by-ahmed.jpg",
+    "gallery": [
+      "/perfumes/bottles/blue-by-ahmed.jpg"
+    ],
+    "description": "Citrus-woody Blue by Ahmed with smoky-fruity Club de Nuit Intense Man — a day-to-night rotation.",
+    "details": [
+      "Blue by Ahmed 100ml + CDNIM 105ml",
+      "Light enough for office, strong enough for evening",
+      "Summer seasonal offer",
+      "Authentic sealed stock"
+    ]
+  },
+  {
+    "id": "c6",
+    "name": "Gift Ready Couples Set",
+    "category": "combo",
+    "size": "Gift box",
+    "includes": [
+      "Valentino Born in Roma",
+      "Elie Saab Le Parfum"
+    ],
+    "price": 579,
+    "compareAt": 663,
+    "featured": true,
+    "badge": "Gift set",
+    "image": "/perfumes/bottles/valentino-born-in-roma.jpg",
+    "gallery": [
+      "/perfumes/bottles/valentino-born-in-roma.jpg"
+    ],
+    "description": "Designer pair for gifting — Valentino Born in Roma for him and Elie Saab Le Parfum for her.",
+    "details": [
+      "Valentino Born in Roma 100ml + Elie Saab Le Parfum 90ml",
+      "Two full-size designer bottles",
+      "Ribbon-ready presentation",
+      "Perfect for celebrations"
+    ]
+  },
+  {
+    "id": "c7",
+    "name": "Cool Water Couple",
+    "category": "combo",
+    "size": "2 × 100ml",
+    "includes": [
+      "Davidoff Cool Water Parfum for Men 100ML",
+      "Davidoff Cool Water EDT for Women 100ML"
+    ],
+    "price": 189,
+    "compareAt": 224,
+    "featured": true,
+    "badge": "His & hers",
+    "image": "/perfumes/bottles/davidoff-cool-water-parfum-for-men-100ml.jpg",
+    "gallery": [
+      "/perfumes/bottles/davidoff-cool-water-parfum-for-men-100ml.jpg"
+    ],
+    "description": "Davidoff Cool Water for him and her — a fresh aquatic pair at a bundle price.",
+    "details": [
+      "Cool Water Parfum 100ml + Cool Water Woman 100ml",
+      "Classic aquatic signatures",
+      "Better value than buying separately",
+      "Authentic sealed stock"
+    ]
+  },
+  {
+    "id": "c8",
+    "name": "CK Shock Duo",
+    "category": "combo",
+    "size": "2 × 100ml",
+    "includes": [
+      "Calvin Klein One Shock for Him EDT for Men 100ML",
+      "Calvin Klein One Shock for Her EDT For Women 100ML"
+    ],
+    "price": 129,
+    "compareAt": 150,
+    "featured": true,
+    "badge": "Save 14%",
+    "image": "/perfumes/bottles/calvin-klein-one-shock-for-him-edt-for-men-100ml.jpg",
+    "gallery": [
+      "/perfumes/bottles/calvin-klein-one-shock-for-him-edt-for-men-100ml.jpg"
+    ],
+    "description": "Calvin Klein One Shock his and hers — a matching everyday pair.",
+    "details": [
+      "One Shock Him 100ml + One Shock Her 100ml",
+      "Office and weekend friendly",
+      "Gift-ready duo",
+      "Authentic sealed stock"
+    ]
+  },
+  {
+    "id": "c9",
+    "name": "Burberry London Pair",
+    "category": "combo",
+    "size": "2 × 100ml",
+    "includes": [
+      "Burberry London EDT for Men 100ML",
+      "Burberry London EDP for Women 100ML"
+    ],
+    "price": 219,
+    "compareAt": 257,
+    "featured": true,
+    "badge": "Designer duo",
+    "image": "/perfumes/bottles/burberry-london-edt-for-men-100ml.jpg",
+    "gallery": [
+      "/perfumes/bottles/burberry-london-edt-for-men-100ml.jpg"
+    ],
+    "description": "Burberry London for him and her — British classics in one set.",
+    "details": [
+      "London Man EDT 100ml + London Woman EDP 100ml",
+      "Two full-size Burberry bottles",
+      "Priced below buying separately",
+      "Authentic Faaperfume sourcing"
+    ]
+  },
+  {
+    "id": "c10",
+    "name": "Oud Prestige Trio",
+    "category": "combo",
+    "size": "3 bottles",
+    "includes": [
+      "Lattafa Badee Al Oud For Glory For Unisex Eau de Parfum 100ML",
+      "Lattafa Bade'E Al Oud Amethyst For Unisex Eau De Parfum 100ML",
+      "Al Haramain Detour Noir For Unisex Eau De Parfume 100ML"
+    ],
+    "price": 199,
+    "compareAt": 239,
+    "featured": true,
+    "badge": "Exclusive",
+    "image": "/perfumes/bottles/lattafa-badee-al-oud-for-glory-for-unisex-eau-de-parfum-100ml.jpg",
+    "gallery": [
+      "/perfumes/bottles/lattafa-badee-al-oud-for-glory-for-unisex-eau-de-parfum-100ml.jpg"
+    ],
+    "description": "Three unisex oud signatures — For Glory, Amethyst, and Detour Noir — for layering or gifting.",
+    "details": [
+      "Three complementary oud profiles",
+      "Built for Gulf evenings",
+      "Layer together or wear alone",
+      "Priced below buying separately"
+    ]
+  },
+  {
+    "id": "c11",
+    "name": "Mancera Night Pair",
+    "category": "combo",
+    "size": "2 bottles",
+    "includes": [
+      "Mancera Cedrat Boise Eau De Parfum for Unisex",
+      "Mancera Red Tobacco EDP for Unisex 120ML"
+    ],
+    "price": 569,
+    "compareAt": 658,
+    "featured": true,
+    "badge": "Niche",
+    "image": "/perfumes/bottles/mancera-red-tobacco-edp-for-unisex-120ml.jpg",
+    "gallery": [
+      "/perfumes/bottles/mancera-red-tobacco-edp-for-unisex-120ml.jpg"
+    ],
+    "description": "Cedrat Boise and Red Tobacco — two Mancera powerhouses at a set price.",
+    "details": [
+      "Cedrat Boise + Red Tobacco 120ml",
+      "Niche-strength projection",
+      "Better value than singles",
+      "Authentic sealed stock"
+    ]
+  },
+  {
+    "id": "c12",
+    "name": "Floral Evening Duo",
+    "category": "combo",
+    "size": "2 bottles",
+    "includes": [
+      "Elie Saab Girl Of Now Eau De Parfum for Women",
+      "Gucci Bamboo Eau De Parfum for Women"
+    ],
+    "price": 399,
+    "compareAt": 475,
+    "featured": true,
+    "badge": "For her",
+    "image": "/perfumes/bottles/elie-saab-girl-of-now-eau-de-parfum-for-women.jpg",
+    "gallery": [
+      "/perfumes/bottles/elie-saab-girl-of-now-eau-de-parfum-for-women.jpg"
+    ],
+    "description": "Girl of Now and Gucci Bamboo — two luminous florals for gifting or rotation.",
+    "details": [
+      "Elie Saab Girl of Now + Gucci Bamboo",
+      "Two full-size women’s EDPs",
+      "Celebration-ready pairing",
+      "Authentic Faaperfume sourcing"
+    ]
+  }
+]

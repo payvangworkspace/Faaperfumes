@@ -3,8 +3,6 @@ export const CURRENCIES = [
   { code: 'AED', label: 'AED', symbol: 'AED ', name: 'UAE Dirham' },
   { code: 'USD', label: 'USD', symbol: '$', name: 'US Dollar' },
   { code: 'EUR', label: 'EUR', symbol: '€', name: 'Euro' },
-  { code: 'INR', label: 'INR', symbol: '₹', name: 'Indian Rupee' },
-  { code: 'GBP', label: 'GBP', symbol: '£', name: 'British Pound' },
 ]
 
 /** Approximate conversion rates from AED. */
@@ -12,8 +10,6 @@ export const RATES_FROM_AED = {
   AED: 1,
   USD: 0.2723,
   EUR: 0.2495,
-  INR: 22.7,
-  GBP: 0.214,
 }
 
 /** Approximate conversion into AED. */
@@ -21,8 +17,6 @@ export const RATES_TO_AED = {
   AED: 1,
   USD: 3.67,
   EUR: 4.01,
-  INR: 0.044,
-  GBP: 4.67,
 }
 
 export const CURRENCY_CODES = CURRENCIES.map((item) => item.code)
